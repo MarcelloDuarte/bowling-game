@@ -14,7 +14,11 @@ class BowlingGame {
         $frameIndex = 0;
 
         for ($frame = 1; $frame <= 10; $frame++) {
-            if ($this->isSpare($frameIndex)) {
+            if ($this->rolls[$frameIndex] == 10) {
+                $score += 10 + $this->rolls[$frameIndex + 1] + $this->rolls[$frameIndex + 2];
+                $frameIndex++;
+                continue;
+            } elseif ($this->isSpare($frameIndex)) {
                 $score += 10 + $this->rolls[$frameIndex + 2];
             } else {
                 $score += $this->rolls[$frameIndex] + $this->rolls[$frameIndex + 1];
