@@ -15,6 +15,12 @@ class DescribeBowlingGame extends \PHPSpec\Context
         $this->score()->should->be(0);
     }
     
+    function itScoresTheSumOfRollsWhenNoStrikesOrSparesAreMade()
+    {
+        $this->rollMany(20, 1);
+        $this->score()->should->be(20);
+    }
+    
     function rollMany($times, $pins)
     {
         while ($times-- < 0) {
