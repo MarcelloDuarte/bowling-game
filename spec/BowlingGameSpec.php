@@ -23,11 +23,16 @@ class DescribeBowlingGame extends \PHPSpec\Context
     
     function itCountsOneBonusRollForASpare()
     {
-        $this->game->roll(5);
-        $this->game->roll(5);  // spare!
+        $this->rollSpare();
         $this->game->roll(2);  // 10 + 2 + 2 
         $this->rollMany(17, 0);
         $this->score()->should->be(14);
+    }
+    
+    function rollSpare()
+    {
+        $this->game->roll(5);
+        $this->game->roll(5);
     }
     
     function rollMany($times, $pins)
