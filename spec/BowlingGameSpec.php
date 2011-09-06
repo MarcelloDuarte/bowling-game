@@ -31,7 +31,7 @@ class DescribeBowlingGame extends \PHPSpec\Context
     
     function itCountsTwoBonusRollForAStrike()
     {
-        $this->game->roll(10); // strike!
+        $this->rollStrike();
         $this->game->roll(5);
         $this->game->roll(2);  // 10 + 5 + 2 + 5 + 2
         $this->rollMany(17, 0);
@@ -42,6 +42,11 @@ class DescribeBowlingGame extends \PHPSpec\Context
     {
         $this->game->roll(5);
         $this->game->roll(5);
+    }
+    
+    function rollStrike()
+    {
+        $this->game->roll(10);
     }
     
     function rollMany($times, $pins)
