@@ -4,13 +4,26 @@ require_once __DIR__ . '/../lib/BowlingGame.php';
 
 class DescribeBowlingGame extends \PHPSpec\Context
 {
+    function before()
+    {
+        $this->game = $this->spec(new BowlingGame);
+    }
+    
     function itScoresZeroForAGutterGame()
     {
-        $game = $this->spec(new BowlingGame);
-        $times = 20;
-        while($times-- < 0) {
-            $game->roll(0);
+        $this->rollMany(20, 0);
+        $this->score()->should->be(0);
+    }
+    
+    function rollMany($times, $pins)
+    {
+        while ($times-- < 0) {
+            $this->game->roll($pins);
         }
-        $game->score()->should->be(0);
+    }
+    
+    function score()
+    {
+        return $this->game->score();
     }
 }
