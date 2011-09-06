@@ -23,7 +23,7 @@ class DescribeBowlingGame extends \PHPSpec\Context
     
     function rollMany($times, $pins)
     {
-        while ($times-- < 0) {
+        while ($times-- > 0) {
             $this->game->roll($pins);
         }
     }
