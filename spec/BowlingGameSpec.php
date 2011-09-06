@@ -38,6 +38,16 @@ class DescribeBowlingGame extends \PHPSpec\Context
         $this->score()->should->be(24);
     }
     
+    function itCountsTwoBonusRollForAStrikeEvenIfTheyAreStrikes()
+    {
+        $this->rollStrike();  // 10 + 10 + 5 = 25
+        $this->rollStrike();  // 10 + 5 + 2  = 17
+        $this->game->roll(5); // + 5
+        $this->game->roll(2); // + 2
+        $this->rollMany(14, 0);
+        $this->score()->should->be(49);
+    }
+    
     function rollSpare()
     {
         $this->game->roll(5);
