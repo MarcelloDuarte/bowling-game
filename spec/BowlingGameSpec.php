@@ -48,6 +48,12 @@ class DescribeBowlingGame extends \PHPSpec\Context
         $this->score()->should->be(49);
     }
     
+    function itScores300ForAPerfectGame()
+    {
+        $this->rollMany(12, 10);
+        $this->score()->should->be(300);
+    }
+    
     function rollSpare()
     {
         $this->game->roll(5);
