@@ -19,9 +19,9 @@ class FeatureContext extends BehatContext
 {
 
     /**
-     * @Given /^I have started a new game of (\d+)-pin bowling$/
+     * @Given /^I have started a new game of 10-pin bowling$/
      */
-    public function iHaveStartedANewGameOfPinBowling($argument1)
+    public function iHaveStartedANewGameOfTenPinBowling()
     {
         $this->game = new BowlingGame;
     }
@@ -29,9 +29,9 @@ class FeatureContext extends BehatContext
     /**
      * @When /^I roll (\d+) gutter balls$/
      */
-    public function iRollGutterBalls($pins)
+    public function iRollGutterBalls($times)
     {
-        $this->rollMany($pins, 0);
+        $this->rollMany(0, $times);
     }
 
     /**
@@ -39,7 +39,7 @@ class FeatureContext extends BehatContext
      */
     public function myScoreIsPoints($score)
     {
-        assertSame($score, $this->score());
+        assertSame((int)$score, $this->score());
     }
 
     /**
@@ -78,13 +78,13 @@ class FeatureContext extends BehatContext
     
     private function roll($strike)
     {
-        $this->game->roll($strike);
+        $this->game->roll((int)$strike);
     }
     
-    private function rollMany($pins, $strike)
+    private function rollMany($pins, $times)
     {
-        while($pins-- > 0) {
-            $this->game->roll($strike);
+        while($times-- > 0) {
+            $this->roll($pins);
         }
     }
     
